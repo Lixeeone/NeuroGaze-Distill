@@ -1,6 +1,6 @@
 # NeuroGaze-Distill
 EEG-to-face emotion recognition distillation project
-####（Note: Despite the name NeuroGaze-Distill, this project does not rely on eye-tracking (gaze) data. “Gaze” denotes the model’s attention-like behavior induced by prototypes and the D-Geo prior.）
+### *（Note: Despite the name NeuroGaze-Distill, this project does not rely on eye-tracking (gaze) data. “Gaze” denotes the model’s attention-like behavior induced by prototypes and the D-Geo prior.）*
 # NeuroGaze-Distill (Minimal yet Reproducible)
 
 A compact, reviewer-friendly release of our FER distillation project.
