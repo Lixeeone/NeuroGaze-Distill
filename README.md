@@ -263,10 +263,10 @@ We’re happy to help reproduce the reported numbers on your environment.
 <p align="center">
   <a href="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c" target="_blank" rel="noopener">
     <img src="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c"
-         alt="NeuroGaze-Distill — overview figure" width="1280">
+         alt="NeuroGaze-Distill — overview figure" width="680">
   </a>
   <br/>
-  <em>Figure: Overview of the NeuroGaze-Distill pipeline (click to view full resolution).</em>
+
 </p>
 
 
