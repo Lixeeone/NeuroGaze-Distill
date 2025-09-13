@@ -1,6 +1,6 @@
 # NeuroGaze-Distill
 EEG-to-face emotion recognition distillation project
-（Note: Despite the name NeuroGaze-Distill, this project does not rely on eye-tracking (gaze) data. “Gaze” denotes the model’s attention-like behavior induced by prototypes and the D-Geo prior.）
+####（Note: Despite the name NeuroGaze-Distill, this project does not rely on eye-tracking (gaze) data. “Gaze” denotes the model’s attention-like behavior induced by prototypes and the D-Geo prior.）
 # NeuroGaze-Distill (Minimal yet Reproducible)
 
 A compact, reviewer-friendly release of our FER distillation project.
@@ -264,7 +264,7 @@ We’re happy to help reproduce the reported numbers on your environment.
 <p align="center">
   <a href="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c" target="_blank" rel="noopener">
     <img src="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c"
-         alt="NeuroGaze-Distill — overview figure" width="680">
+         alt="NeuroGaze-Distill — overview figure" width="380">
   </a>
   <br/>
 
