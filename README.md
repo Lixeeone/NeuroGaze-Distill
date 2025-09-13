@@ -258,15 +258,15 @@ TBD (research-only by default unless specified).
 Open a GitHub Issue (preferred during review) or email **tzulamlee@gmail.com**.  
 We’re happy to help reproduce the reported numbers on your environment.
 
+---
+
 <p align="center">
-  <!-- 机构 A（可选：把 # 换成机构网址） -->
-  <a href="#" target="_blank" rel="noopener">
-    <img src="https://github.com/user-attachments/assets/9a8ea7e3-c10a-416f-9894-7e57266f64cd" alt="Institution A" height="72">
+  <a href="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c" target="_blank" rel="noopener">
+    <img src="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c"
+         alt="NeuroGaze-Distill — overview figure" width="1280">
   </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <!-- 机构 B -->
-  <a href="#" target="_blank" rel="noopener">
-    <img src="https://github.com/user-attachments/assets/e4ea3aa1-6cc2-49e1-bf14-1f7f9d3d324b" alt="Institution B" height="72">
-  </a>
+  <br/>
+  <em>Figure: Overview of the NeuroGaze-Distill pipeline (click to view full resolution).</em>
 </p>
+
 
