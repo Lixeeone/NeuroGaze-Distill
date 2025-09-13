@@ -255,5 +255,6 @@ TBD (research-only by default unless specified).
 
 ## Contact
 
-Open a GitHub Issue (preferred during review).
+Open a GitHub Issue (preferred during review) or email **tzulamlee@gmail.com**.  
 We’re happy to help reproduce the reported numbers on your environment.
+
