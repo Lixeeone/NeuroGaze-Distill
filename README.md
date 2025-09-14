@@ -276,9 +276,6 @@ TBD (research-only by default unless specified).
 
 ---
 
-## Contact & Acknowledgments
-
-* Contact: **[tzulamlee@gmail.com](mailto:tzulamlee@gmail.com)**
 * We thank the maintainers of CK+, AffectNet, FERPlus/FER2013, DREAMER, and MAHNOB-HCI for providing the datasets that enabled this research.
 
 ---
