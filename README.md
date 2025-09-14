@@ -14,7 +14,7 @@ EEG-to-face emotion recognition distillation project
 
 **Please go to the GitHub *Releases* section** and download the reproducibility bundle:
 
-**Main reproducibility package (A3\_full, 100ep, v4) — Latest**
+**Main reproducibility package (A3\_full, 100ep, v4，anonymous supplementary on OpenReview) — Latest**
 Tag: **v2025-09-13**  •  Commit: **c4b56e1**
 Assets:
 
