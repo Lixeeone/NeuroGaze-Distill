@@ -1,0 +1,49 @@
+Responsible AI Use Addendum (applies to model artifacts)
+Version 1.0 — 2025-09-13
+Contact: tzulamlee@gmail.com
+Copyright (c) 2025 Lee tzu lam
+
+SCOPE
+This Addendum governs the use of the following “Model Artifacts”: any pretrained
+or distilled model weights and checkpoints, prototype files (e.g., prototypes_*_v4.npz),
+and evaluation artifacts (e.g., exported metrics/tables that reflect model outputs).
+Software code remains under MIT (see LICENSE). If there is any conflict, this Addendum
+controls the Model Artifacts.
+
+GRANT (RESEARCH-ONLY)
+Subject to the prohibitions below, you are permitted to download, use, and reproduce
+the Model Artifacts for non-commercial research purposes, academic study, teaching,
+and peer review. Any redistribution must include this NOTICE in full.
+
+PROHIBITED USES (STRICTLY FORBIDDEN)
+You MUST NOT use the Model Artifacts, or any derivatives/fine-tunes thereof, to:
+1) Perform or enable biometric identification or verification of a person, including
+   but not limited to face recognition, identity inference, re-identification, or
+   any attempt to determine a person’s real-world identity.
+2) Build, deploy, or operate surveillance systems targeting individuals or groups,
+   including persistent tracking, monitoring, or profiling for law-enforcement,
+   security, or intelligence purposes.
+3) Facilitate or provide services to third parties whose intended use falls under
+   items (1) or (2), including model-as-a-service scenarios.
+4) Circumvent dataset licenses, privacy, or terms of use; attempt to reconstruct
+   personally identifiable data or reverse engineer prototypes/representations into
+   identifiable facial images or traits.
+5) Violate applicable laws, regulations, institutional IRB/ethics determinations,
+   or dataset usage agreements.
+
+ATTRIBUTION
+If you use the Model Artifacts in academic publications, please cite the accompanying
+paper and this repository.
+
+NO WARRANTY
+The Model Artifacts are provided “AS IS”, without warranty of any kind. The authors
+and copyright holders shall not be liable for any claim, damages, or other liability
+arising from or in connection with the use of the Model Artifacts.
+
+TERMINATION
+Any breach of this Addendum immediately terminates your permission to use the
+Model Artifacts. Upon termination you must cease use and delete local copies.
+
+COMMERCIAL OR OTHER USES
+If you seek a different license (e.g., commercial or applied deployments), please
+contact: tzulamlee@gmail.com
