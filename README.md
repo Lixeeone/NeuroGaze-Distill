@@ -1,30 +1,59 @@
+
+
+---
+
 # NeuroGaze-Distill
+
 EEG-to-face emotion recognition distillation project
-### *（Note: Despite the name NeuroGaze-Distill, this project does not rely on eye-tracking (gaze) data. “Gaze” denotes the model’s attention-like behavior induced by prototypes and the D-Geo prior.）*
-# NeuroGaze-Distill (Minimal yet Reproducible)
 
-A compact, reviewer-friendly release of our FER distillation project.
-It focuses on the **main model** used in the paper and provides everything needed to **verify numbers** and, if desired, **recompute metrics** on your local data.
+### *(Note: Despite the name **NeuroGaze-Distill**, this project does **not** rely on eye-tracking (gaze) data. “Gaze” denotes attention-like behavior induced by prototypes and the D-Geo prior.)*
 
 ---
 
-## Highlights
+## 🔔 For Reviewers — Main Reproducibility Package
 
-* **Main model**: `A3_full` (student distilled from teacher), **D-Geo prior enabled**, tuned at **weight = 0.012**, trained **100 epochs**.
+**Please go to the GitHub *Releases* section** and download the reproducibility bundle:
+
+**Main reproducibility package (A3\_full, 100ep, v4) — Latest**
+Tag: **v2025-09-13**  •  Commit: **c4b56e1**
+Assets:
+
+* `NeuroGaze_Distill_main_2025-09-13.tar.gz`
+  `sha256: f83031befc3e2ffba9bc0caf9a71ab3913defb170ed6dbe04fac0262a174bd84`
+* `SHA256SUMS.txt` (checksums for verification)
+
+**Verify locally:**
+
+```bash
+sha256sum -c SHA256SUMS.txt
+# expected: NeuroGaze_Distill_main_2025-09-13.tar.gz: OK
+```
+
+The package contains the **main model weights**, **metrics**, **LaTeX tables**, and **evaluation scripts** needed to verify the paper **without re-training**.
+
+---
+
+## Minimal Yet Reproducible
+
+This repository focuses on the **main model used in the paper** and what’s needed to (a) **verify the numbers** and (b) **optionally recompute metrics** locally.
+
+### Highlights
+
+* **Main model**: `A3_full` (student distilled from teacher), **D-Geo enabled**, tuned at **weight = 0.012**, **100 epochs**.
 * **Prototype knowledge**: fixed **v4** prototypes
-  `data/processed/prototypes_dreamer_mahnob_5x5_v4.npz` (DREAMER + MAHNOB static integration).
+  `data/processed/prototypes_dreamer_mahnob_5x5_v4.npz` (DREAMER + MAHNOB).
 * **Cross-dataset protocol**:
+  • **8-way** (fixed FER mapping)  •  **Present-only** (macro-F1 over labels present in the target dataset)
+* **Metrics**: `acc`, `macro_f1`, `bACC`; each dataset emits a `metrics.json`.
+* **Repro convenience**: ready-to-compile LaTeX tables (`viz/*.tex`), eval scripts for **CSV**/**NPZ**, and **configuration fingerprints** (SHA-256).
 
-  * **8-way**: fixed FER mapping (8 classes).
-  * **Present-only**: macro-F1 over labels **present in the target dataset**.
-* **Metrics**: `acc`, `macro_f1`, `bACC`; saved as `metrics.json` per dataset.
-* **Repro convenience**: ready-to-compile LaTeX tables for Overleaf (`viz/*.tex`), eval scripts for **CSV** and **NPZ** manifests, and configuration **fingerprints** (SHA-256) for transparency.
-
-> We **do not** distribute datasets. Model weights and evaluation artifacts are provided. If you have the datasets locally, the included scripts will reproduce the tables.
+> We **do not distribute datasets**. We provide weights and evaluation artifacts. If you have the datasets locally, the included scripts will reproduce the tables.
 
 ---
 
-## Repository Layout (what you actually need)
+## What’s in the Release Archive
+
+After extracting `NeuroGaze_Distill_main_2025-09-13.tar.gz` you’ll see (abbreviated):
 
 ```
 .
@@ -32,36 +61,35 @@ It focuses on the **main model** used in the paper and provides everything neede
 │   ├─ eval_student_csv.py      # Evaluate from CSV (CK+ / AffectNet-mini / FERPlus CSV)
 │   └─ eval_student_npz.py      # Evaluate from NPZ (FERPlus valid/test) – no filepaths needed
 ├─ configs/
-│   ├─ student.yaml             # Student backbone & dims (must match training)
-│   ├─ distill.yaml             # Distillation knobs (kd_mse / proto_kd / d_geo / ce / optim)
-│   └─ ablations/
-│       └─ A3_full.yaml         # Main model config (100-epoch long-train variant)
+│   ├─ student.yaml
+│   ├─ distill.yaml
+│   └─ ablations/A3_full.yaml   # Main config (100-epoch long-train)
 ├─ outs/
 │   ├─ abla_A3_full_100/
 │   │   ├─ student_best.ckpt                # Main model weights (100 epochs)
-│   │   └─ ablation_fingerprint.json        # Switches + prototype SHA256, for audit
+│   │   └─ ablation_fingerprint.json        # Switches + prototype SHA256 (audit)
 │   ├─ xval_ckplus_abla_A3_full/metrics.json
 │   ├─ xval_affmini_abla_A3_full/metrics.json
 │   └─ xval_ferplus_valid_abla_A3_full/metrics.json
 ├─ viz/
 │   ├─ xval_main.tex                        # Cross-dataset table (A3_full)
-│   └─ ablation_lite.tex                    # Lightweight ablation on FER valid (8-way)
-├─ env_conda.yml        # (optional) conda export snapshot
-├─ pip_freeze.txt       # pip snapshot (always present)
-└─ git_commit.txt       # code snapshot (hash or "unknown")
+│   └─ ablation_lite.tex                    # Lightweight FER ablation (8-way)
+├─ env_conda.yml            # (optional) conda snapshot (if available)
+├─ pip_freeze.txt           # pip snapshot
+└─ git_commit.txt           # code snapshot (hash or "unknown")
 ```
 
 ---
 
-## Quickstart (verify without any data)
+## Quick Verify (No Data Needed)
 
-You can audit the exact switches and produce the same paper tables **without** local datasets.
+You can audit the exact switches and produce the same paper tables **without any datasets**:
 
 ```bash
-# 1) Inspect the training/eval fingerprint
+# 1) Inspect training/eval fingerprint
 cat outs/abla_A3_full_100/ablation_fingerprint.json
 
-# 2) Compile LaTeX tables directly (or upload to Overleaf)
+# 2) Compile LaTeX tables directly (or copy to Overleaf)
 #    - viz/xval_main.tex     : A3_full cross-dataset table
 #    - viz/ablation_lite.tex : FERPlus ablation (8-way)
 ```
@@ -70,20 +98,20 @@ The `metrics.json` under `outs/xval_*_abla_A3_full/` are exactly what those tabl
 
 ---
 
-## Full Evaluation (with your local data)
+## Full Evaluation (With Your Local Data)
 
 ### Environment
 
 ```bash
-# Recommended
-conda env create -f env_conda.yml -n neurogaze  # if available
+# Recommended (if provided)
+conda env create -f env_conda.yml -n neurogaze
 conda activate neurogaze
 
 # Fallback (always safe)
 pip install -r pip_freeze.txt
 ```
 
-### Files you need to provide
+### Provide These Files
 
 * **FERPlus (preferred: NPZ)**
   `data/FERPlus/ferplus_valid.npz` and `data/FERPlus/class_map_ferplus.json`
@@ -95,19 +123,19 @@ pip install -r pip_freeze.txt
   data/xval_manifests/class_map_fer.json
   ```
 
-  CSV must contain **resolvable image paths** and any of these header names:
+  CSV must contain resolvable **image paths** and any of these headers:
 
-  * path column: `image_path` / `path` / `img` / `file` / `filepath` / `filename`
-  * label name column: `label_name` / `class_name` / `label_str`
-  * or label id column: `label_id` / `label` / `cls` / `class` / `target` / `y`
+  * path: `image_path` / `path` / `img` / `file` / `filepath` / `filename`
+  * label name: `label_name` / `class_name` / `label_str`
+  * or label id: `label_id` / `label` / `cls` / `class` / `target` / `y`
 
-> If training from scratch, ensure prototypes v4 exist at
+> If training from scratch, ensure prototypes v4 exists at
 > `data/processed/prototypes_dreamer_mahnob_5x5_v4.npz`.
-> For **evaluation only**, you only need the ckpt and your data.
+> For **evaluation only**, the **ckpt + your data** are sufficient.
 
-### Run evaluations
+### Run Evaluations
 
-**FERPlus (NPZ, no filepaths needed):**
+**FERPlus (NPZ):**
 
 ```bash
 PYTHONPATH=. python tools/eval_student_npz.py \
@@ -139,58 +167,42 @@ PYTHONPATH=. python tools/eval_student_csv.py \
   --outs-dir outs/xval_affmini_abla_A3_full
 ```
 
-Outputs:
+**Outputs** (per dataset):
 
-* `outs/.../metrics.json` with:
-
-  ```json
-  {
-    "8way": {"acc": ..., "macro_f1": ..., "bacc": ...},
-    "present_only": {
-      "acc": ..., "macro_f1": ..., "bacc": ...,
-      "present_idx": [...],
-      "present_names": [...]
-    }
-  }
-  ```
-* Optional confusion matrices: `confmat.png`, `confmat_present.png` (if plotting deps available).
+* `outs/.../metrics.json`
+* optional `confmat.png` and `confmat_present.png` (if plotting deps available)
 
 ---
 
-## How we choose the main model (context for reviewers)
+## How the Main Model Was Chosen (Context)
 
-We sweep **D-Geo** weights with `tools/sweep_dgeo.sh` and **select by external present-only macro-F1 mean** (CK+ & Affect-mini).
-The best setting was **D-Geo = 0.012** with **positive classes** = `["happiness","surprise"]`.
-We then **long-train 100 epochs** and set the canonical alias:
+We swept **D-Geo** with `tools/sweep_dgeo.sh` and selected by **external present-only macro-F1 mean** (CK+ & Affect-mini).
+Best: **D-Geo = 0.012**, `positive_classes = ["happiness","surprise"]`.
+Then we **long-trained 100 epochs** and aliased:
 
 ```
-outs/abla_A3_full    -> outs/abla_A3_full_100
-runs/abla_A3_full    -> runs/abla_A3_full_100
+outs/abla_A3_full -> outs/abla_A3_full_100
+runs/abla_A3_full -> runs/abla_A3_full_100
 ```
-
-so all scripts & tables resolve to this “main” variant.
-
-> For speed we also provide `tools/eval_student_npz.py` to avoid any path headaches on FERPlus.
 
 ---
 
-## Regenerating paper tables (if you re-run eval)
+## Regenerate Paper Tables (If You Re-Run Eval)
 
-After you run evaluation and produce `metrics.json`, re-emit the LaTeX:
+After generating new `metrics.json`, re-emit:
 
-* `viz/xval_main.tex` — **Cross-dataset** table for `A3_full`.
-* `viz/ablation_lite.tex` — **Lightweight ablation** on FER valid (8-way only).
+* `viz/xval_main.tex` — cross-dataset table for `A3_full`
+* `viz/ablation_lite.tex` — lightweight FER ablation (8-way)
 
 These compile directly in Overleaf.
 
 ---
 
-## Training (if you want to retrain)
+## (Optional) Training Command
 
-We keep training instructions minimal (not required for verification):
+Not required for verification, but provided for completeness:
 
 ```bash
-# Main model config (100-epoch)
 python train_student_distill.py \
   --cfg configs/ablations/A3_full.yaml \
   --workers 8 --channels-last --acc-steps 1 --clip-grad 1.0 \
@@ -198,16 +210,14 @@ python train_student_distill.py \
   --no-ldacc
 ```
 
-**Important knobs in `distill.yaml` / `A3_full.yaml`:**
+**Key knobs (in `distill.yaml`/`A3_full.yaml`):**
 
 * `kd_mse.weight = 0.30`
 * `proto_kd = {mode: cos, weight: 0.12, tau: 0.90, temperature: 5.0}`
 * `d_geo = {weight: 0.012, positive_classes: ["happiness","surprise"], schedule: "late_cosine", start_epoch: 20, end_epoch: 60, hard_gate: 0.2, intra_class: true}`
 * `ce = {label_smoothing: 0.055, class_weights: [...]}`
-* `optim.epochs = 100` (main model); eval temperature `= 1.0`.
-
-**Prototypes v4** are fixed via
-`teacher_prototypes: data/processed/prototypes_dreamer_mahnob_5x5_v4.npz`.
+* `optim.epochs = 100` (eval temperature = `1.0`)
+* Prototypes v4: `teacher_prototypes: data/processed/prototypes_dreamer_mahnob_5x5_v4.npz`
 
 ---
 
@@ -215,9 +225,9 @@ python train_student_distill.py \
 
 * `outs/abla_A3_full_100/ablation_fingerprint.json` records:
 
-  * **config hashes** (SHA-256) for `A3_full.yaml`, `student.yaml`
-  * **prototype path & SHA-256** (v4)
-  * all **distillation switches** & weights (`kd_mse / proto_kd / d_geo`)
+  * SHA-256 of **A3\_full.yaml**, **student.yaml**
+  * prototype **path & SHA-256** (v4)
+  * all distillation switches/weights (`kd_mse` / `proto_kd` / `d_geo`)
   * training epochs and core options
 * `env_conda.yml`, `pip_freeze.txt` — environment snapshots
 * `git_commit.txt` — code snapshot (hash or “unknown”)
@@ -226,10 +236,22 @@ python train_student_distill.py \
 
 ## Troubleshooting
 
-* **`rows=0` in CSV eval**: image paths in CSV are not resolvable. Use **absolute paths** or place images exactly where CSV points.
-* **Mapping differences**: CK+ / Affect-mini use `class_map_fer.json` (fixed FER 8-way). FERPlus uses `class_map_ferplus.json`.
-* **File not found**: double-check `affmini` vs `affectmini` spelling and the paths listed above.
-* **GPU/Speed**: You can lower `--workers` for stability, or raise for speed. We default to safe values.
+* **`rows=0` in CSV eval** → image paths in CSV are not resolvable. Use **absolute paths** or place images exactly where CSV points.
+* **Mapping differences** → CK+ / Affect-mini use `class_map_fer.json` (fixed FER 8-way). FERPlus uses `class_map_ferplus.json`.
+* **Spelling** → double-check `affmini` vs `affectmini`.
+* **GPU/Speed** → adjust `--workers`. We default to safe values.
+
+---
+
+## Ethics & Privacy
+
+**Datasets.** We use only public datasets (CK+, AffectNet/mini, FERPlus/FER2013, DREAMER, MAHNOB-HCI) under their original academic licenses. We **do not collect new human data** and **do not redistribute** any raw images or videos.
+
+**What we release.** Model weights, evaluation scripts, metrics, and LaTeX tables. The teacher “v4 prototypes” are **aggregated, cross-subject feature statistics** (not per-subject samples) and **not intended to be reversible** to any identity.
+
+**Intended use & restrictions.** Research use only. **Explicitly not for identity recognition or surveillance.** Users must obtain the original datasets directly from the official sources and accept their licenses.
+
+**IRB/ethics review.** In most institutions, using licensed public datasets without collecting new human subjects typically qualifies as **Not Human Subjects Research / Exempt**. We will obtain/retain such determination if required. We include this statement to support transparency during peer review.
 
 ---
 
@@ -241,7 +263,7 @@ If you use this repo, please cite the paper (TBD):
 @inproceedings{neurogaze_distill_2025,
   title={NeuroGaze-Distill: ...},
   author={...},
-  booktitle={...},
+  booktitle={International Conference on Learning Representations (ICLR)},
   year={2025}
 }
 ```
@@ -254,20 +276,9 @@ TBD (research-only by default unless specified).
 
 ---
 
-## Contact
+## Contact & Acknowledgments
 
-Open a GitHub Issue (preferred during review) or email **tzulamlee@gmail.com**.  
-We’re happy to help reproduce the reported numbers on your environment.
+* Contact: **[tzulamlee@gmail.com](mailto:tzulamlee@gmail.com)**
+* We thank the maintainers of CK+, AffectNet, FERPlus/FER2013, DREAMER, and MAHNOB-HCI for providing the datasets that enabled this research.
 
 ---
-
-<p align="center">
-  <a href="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c" target="_blank" rel="noopener">
-    <img src="https://github.com/user-attachments/assets/c41b87b8-c2ad-457a-9eb2-d6374cd3c85c"
-         alt="NeuroGaze-Distill — overview figure" width="380">
-  </a>
-  <br/>
-
-</p>
-
-
