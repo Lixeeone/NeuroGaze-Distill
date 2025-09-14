@@ -1,6 +1,16 @@
-MIT License
-
+MIT License (software code)
 Copyright (c) 2025 Lee tzu lam
+
+SCOPE NOTICE (IMPORTANT)
+This repository contains multiple components under different terms:
+1) Software code is licensed under the MIT terms below.
+2) Pretrained model weights, prototype files, evaluation artifacts (e.g., checkpoints,
+   prototypes *.npz, exported metrics/tables) are NOT covered by MIT; they are governed
+   by the Responsible AI Use Addendum in NOTICE (research-only; no identification or
+   surveillance). In case of conflict, the more restrictive terms in NOTICE apply
+   to those artifacts.
+
+--- MIT TERMS FOR SOFTWARE CODE ONLY ---
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
